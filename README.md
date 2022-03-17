@@ -1,5 +1,5 @@
 # Monkey-Obfuscator
-Advanced python obfuscator to obfuscate any python files using marshal, zlib, base64, base32, base16, base85 and many others.
+Python obfuscator / Python encoder / Python encrypter to obfuscate, encode, encrypt any python files using marshal, zlib, base64, base32, base16, base85 and many others.
 
 # Installation
 Download Python 3.6 and + (https://www.python.org)
