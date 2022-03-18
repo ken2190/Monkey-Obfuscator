@@ -42,6 +42,10 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 from time import sleep
+from pystyle import *
+
+os.system("mode con cols=80 lines=40")
+os.system("title " + "Monkey Obfuscator Logs")
 
 window = Tk()
 window.title("Monkey Obfuscator || vesper#0003")
@@ -60,7 +64,42 @@ fullbu = PhotoImage(file="assets/fullbu.png")
 class Monkey:
 
     def __init__(self):
+        os.system('cls')
+        print(f"""{Col.orange}
+                               ,(((((((((((((((((,
+                          /(((((((((((((((((((((((((/(
+                        /(((((((((((((((((((((((((((((((/
+                      /((((((((((((((((((((((((((((((((((((
+                    /((((((/@@@@@@@@@@@/(/@@@@@@@@@@@/((((((/
+                   /(((((,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.((((((
+                  *(((((@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@(((((/
+                  (((((*@@@@@@/((((,@@@@@@@@@/(((//@@@@@@@(((((*
+                 (((((*@@@@@(((((((((*@@@@#((((((((( @@@@@*((((*
+       /((((((((((((((*@@@@.((((((((((@@@@/((((((((((@@@@@,((((((((((((((,
+     /((((((/(((((((((/@@@@@*((((((((%@@@@@/(((((((/@@@@@@/((((((((((((((((*
+    /((((%@@@@@@*((((((,@@@@@@@# #&@@@@@@@@@@@#.#@@@@@@@@/((((((.@@@@@@(((((/
+    ((((@@@@@@@@@*((((((,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,((((((,@@@@@@@@ ((((
+    ((((#@@@@@@@@/(((((((*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*(((((((,@@@@@@@@ ((((
+    /((((,@@@@@@/((((((&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&((((((,@@@@@@*((((*
+     *(((((((((((((((.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.(((((((((((((((,
+       ,((((((((((((.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.((((((((((((.
+                .(((@@@@@@@,(((((((((((((((((((((((((*@@@@@@@(((.
+                .((( @@@@@@@,((((((((((((((((((((((( @@@@@@@@(((,
+                 ((((&@@@@@@@@/(((((((((((((((((((/@@@@@@@@@((((
+                  ((((.@@@@@@@@@@.(((((((((((((.@@@@@@@@@@.((((
+                    ,((((/@@@@@@@@@@@@@*///*@@@@@@@@@@@@@/((((,
+                     ,(((((/*@@@@@@@@@@@@@@@@@@@@@@@*/(((((,
+                         /((((((((*,&@@@@@@@&@*/(((((((/
+                             #./(((((((((((((((((/.#   
+
+        """)
+        print(f"""
+============================{Col.white} MONKEY OBFUSCATOR LOGS {Col.orange}============================
+        
+        """)
+        print(f"{Col.white}[{Col.orange}+{Col.white}] {Col.orange}Waiting For Setup..")
         self.iswallson = False
+        self.wallcount = 0
         self.main()
 
     def walls(self,src):
@@ -72,7 +111,7 @@ class Monkey:
         encode7 = lzma.compress(encode2)
         encode3 = base64.b64encode(encode7)
         encode6 = base64.b85encode(encode3)
-        symbol = '__MONKEY_WALL' *150
+        symbol = '__MONKEY_WALL' *75
         with open(src, 'w') as f:
             f.write('import marshal, zlib, base64, lzma\n')
             f.write(symbol+f"='{symbol}'\n")
@@ -81,6 +120,8 @@ class Monkey:
             f.write(symbol+f"='{symbol}'\n")
             f.write(symbol+f"='{symbol}'")
             f.close()
+        self.wallcount +=1
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added {self.wallcount} wall(s)")
 
     def monkeylol(self,src):
         symbol = '__MONKEY_MONKEY' * 25
@@ -113,6 +154,7 @@ except:pass
             f.write("\n"+symbol+f"='{symbol}'\n")
             f.write("\n"+MONKEYHAHA)
             f.write("\n"+symbol+f"='{symbol}'\n")
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Created Anti Process..")
         b64 = lambda _monkay : base64.b64encode(_monkay)
         mar = lambda _monkay : marshal.dumps(compile(_monkay,'<x>','exec'))
         zlb = lambda _monkay : zlib.compress(_monkay)
@@ -139,20 +181,29 @@ except:pass
         z = []
         for i in data:
             z.append(ord(i))
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Obfuscated Main..")
         beforemarsh ="_ = %s\nexec(''.join(chr(__) for __ in _))" % z
         marsrc = compile(beforemarsh, 'coduter', 'exec')
         obfmarsh = marshal.dumps(marsrc)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added Marshal..")
         obfzlib = zlib.compress(obfmarsh)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added zlib..")
         obflzma = lzma.compress(obfzlib)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added lzma..")
         obfbase64 = base64.b64encode(obflzma)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added base64..")
         obfbase16 = base64.b16encode(obfbase64)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added base16..")
         obfbase32 = base64.b32encode(obfbase16)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added base32..")
         obfbase85 = base64.b85encode(obfbase32)
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added base85..")
         code += f'exec(marshal.loads(zlib.decompress(lzma.decompress(base64.b64decode(base64.b16decode(base64.b32decode(base64.b85decode({obfbase85}))))))))'
         with open(src, 'w+') as f:
             f.write("import marshal, zlib, base64, lzma\n")
             f.write(code)
             f.write(f"\n{symbol} = '{symbol}'")
+        print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Succesfully Obfuscated File!\n")
     def findpy(self):
         filename = askopenfilename(filetypes=(("python files","*.py"),("All files","*.*")))
         self.filetoobf.insert(END,filename)
@@ -170,12 +221,11 @@ except:pass
             amount = int(self.wallsamnt.get())
         for _ in range(fileamount):
             self.monkeylol(file)
-            sleep(0.5)
         if self.iswallson == True:
             for _ in range(amount):
                 self.walls(file)
-                sleep(0.5)
         namefile = file.split("/")[-1]
+        print(f"\n{Col.white}[{Col.orange}+{Col.white}] {Col.orange}Process Finished.")
         messagebox.showinfo("Monkey Obfuscator || vesper#0003", f"Successfully Obfuscated {namefile}")
         self.__init__()
 
