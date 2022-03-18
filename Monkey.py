@@ -4,7 +4,6 @@ MONKEY OBFUSCATOR // vesper#0003
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|vesper|@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,(((((((((((((((((,%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -83,7 +82,7 @@ class Monkey:
             f.close()
 
     def monkeylol(self,src):
-        symbol = '__MONKEY_MONKEY' * 300
+        symbol = '__MONKEY_MONKEY' * 25
         antiprocess = r"""
 try:       
     from psutil import process_iter, NoSuchProcess, AccessDenied, ZombieProcess
@@ -116,13 +115,14 @@ except:pass
         b64 = lambda _monkay : base64.b64encode(_monkay)
         mar = lambda _monkay : marshal.dumps(compile(_monkay,'<x>','exec'))
         zlb = lambda _monkay : zlib.compress(_monkay)
-        OFFSET = 10
+        OFFSET = 100
+        symbol = '__MONKEY_MONKEY' * 50
         with open(src, 'r', encoding='utf-8', errors='ignore') as file:
             content = file.read()
         b64_content = base64.b64encode(content.encode()).decode()
         index = 0
         code = f'{symbol} = ""\n'
-        for _ in range(int(len(b64_content) / OFFSET) + 1):
+        for _ in range(int(len(b64_content) / OFFSET) +1):
             _str = ''
             for char in b64_content[index:index + OFFSET]:
                 byte = str(hex(ord(char)))[2:]
