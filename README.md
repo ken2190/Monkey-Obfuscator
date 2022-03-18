@@ -6,7 +6,7 @@ Python obfuscator / Python encoder / Python encrypter to obfuscate, encode, encr
 
 # Installation
 1. Download Python 3.9 and + (https://www.python.org)
-2. Install the library "pstuil" by running ' pip install psutil ' in a command prompt
+2. Install the library "psutil" by running ' pip install psutil ' in a command prompt
 
 # How to use
 Simply browse and get your python file. Then enter the amount of time Monkey will obfuscate your python file (1 TIME IS RECOMMENDED). You can also add walls which will protect even more your source code and annoy people that will try to deobfuscate it.
