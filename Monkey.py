@@ -71,7 +71,7 @@ class Monkey:
         encode7 = lzma.compress(encode2)
         encode3 = base64.b64encode(encode7)
         encode6 = base64.b85encode(encode3)
-        symbol = '__MONKEY_WALL' *300
+        symbol = '__MONKEY_WALL' *150
         with open(src, 'w') as f:
             f.write('import marshal, zlib, base64, lzma\n')
             f.write(symbol+f"='{symbol}'\n")
