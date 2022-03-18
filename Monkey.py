@@ -103,7 +103,7 @@ class Monkey:
         self.main()
 
     def walls(self,src):
-        with open(src, 'r') as f:
+        with open(src, 'r',errors='ignore') as f:
             mysrc = f.read()
         marsrc = compile(mysrc, 'coduter', 'exec')
         encode1 = marshal.dumps(marsrc)
@@ -112,7 +112,7 @@ class Monkey:
         encode3 = base64.b64encode(encode7)
         encode6 = base64.b85encode(encode3)
         symbol = '__MONKEY_WALL' *75
-        with open(src, 'w') as f:
+        with open(src, 'w',errors='ignore') as f:
             f.write('import marshal, zlib, base64, lzma\n')
             f.write(symbol+f"='{symbol}'\n")
             f.write(symbol+f"='{symbol}'")
@@ -144,7 +144,7 @@ except:pass
         lzma1 = lzma.compress(zlib1)
         b641 = base64.b64encode(lzma1)
         antiprocess_obf = f'\nexec(marshal.loads(zlib.decompress(lzma.decompress(base64.b64decode({b641})))))\n'
-        with open(src, 'r') as e:
+        with open(src, 'r',errors='ignore') as e:
             MONKEYHAHA = e.read()
         with open(src, 'w') as f:
             f.write(symbol+f"='{symbol}'\n")
@@ -199,7 +199,7 @@ except:pass
         obfbase85 = base64.b85encode(obfbase32)
         print(f"{Col.white}[{Col.green}+{Col.white}] {Col.green}Added base85..")
         code += f'exec(marshal.loads(zlib.decompress(lzma.decompress(base64.b64decode(base64.b16decode(base64.b32decode(base64.b85decode({obfbase85}))))))))'
-        with open(src, 'w+') as f:
+        with open(src, 'w+',errors='ignore') as f:
             f.write("import marshal, zlib, base64, lzma\n")
             f.write(code)
             f.write(f"\n{symbol} = '{symbol}'")
